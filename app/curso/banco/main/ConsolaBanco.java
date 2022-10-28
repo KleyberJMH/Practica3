@@ -4,7 +4,17 @@ import java.util.HashMap;
 import java.util.Scanner;
 import app.curso.banco.entidad.Cliente;
 import app.curso.banco.entidad.Gestor;
+import app.curso.banco.util.Utiles;
 
+//Realizado hasta el ejercicio 11
+//Falta aun
+//12. Obtención de un mensaje.
+//13. Obtención de todos los mensajes.
+//14. Envío de un mensaje.
+//15. Obtención de una transferencia.
+//16. Obtención de todas las trasferencias
+//17. Envío de una transferencia.
+//18. Login y registro.
 
 public class ConsolaBanco {
 
@@ -13,6 +23,9 @@ public class ConsolaBanco {
 		HashMap<Integer, Gestor> gestores = new HashMap<>();
 		//Lista de Clientes
 		HashMap<Integer, Cliente> clientes = new HashMap<>();
+		
+		int ultimoIdGestor = 0;
+		int ultimoIdCliente = 0;
 		
 		Scanner keyboard = new Scanner(System.in);
 		int opcion;
@@ -26,10 +39,15 @@ public class ConsolaBanco {
 			
 			System.out.println("1. Crear Gestor");
 			System.out.println("2. Crear Cliente");
-			System.out.println("3. Mostrar Gestores");
-			System.out.println("4. Mostrar Clientes");
-			System.out.println("5. Mostrar Gestor Especifico");
-			System.out.println("6. Mostrar Cliente Especifico");
+			System.out.println("3. Mostrar todos los Gestores");
+			System.out.println("4. Mostrar todos Clientes");
+			System.out.println("5. Mostrar un Gestor");
+			System.out.println("6. Mostrar un Cliente");
+			System.out.println("7. Actualizar un Gestor"); 
+			System.out.println("8. Actualizar un Cliente");
+			System.out.println("9. Eliminar un Gestor");
+			System.out.println("10. Eliminar un Cliente");
+			System.out.println("11. Crear X cantidad de gestores aleatorios");
 			System.out.println("0. Salir");
 			System.out.print("Ingrese el numero de la opcion: ");
 			opcion = keyboard.nextInt();
@@ -41,8 +59,7 @@ public class ConsolaBanco {
 			
 			case 1: 
 				//Crear un gestor
-				System.out.print("Ingrese el id del gestor: ");
-				int id = keyboard.nextInt();
+				ultimoIdGestor++;
 				System.out.print("Ingrese el nombre del gestor: ");
 				String nombre = keyboard.next();
 				System.out.print("Ingrese el telefono del gestor: ");
@@ -50,21 +67,20 @@ public class ConsolaBanco {
 				System.out.print("Ingrese el id de la oficina del gestor: ");
 				int oficina = keyboard.nextInt();
 				
-				Gestor gestor = new Gestor(id, nombre, telefono,oficina);
-				gestores.put(id, gestor);
+				Gestor gestor = new Gestor(ultimoIdGestor, nombre, telefono,oficina);
+				gestores.put(ultimoIdGestor, gestor);
 				break;
 				
 			case 2:
 				//Crear un cliente
-				System.out.print("Ingrese el id del cliente: ");
-				int idCliente = keyboard.nextInt();
+				ultimoIdCliente++;
 				System.out.print("Ingrese el nombre del gestor: ");
 				String nombreCliente = keyboard.next();
 				System.out.print("Ingrese el telefono del gestor: ");
 				String telefonoCliente = keyboard.next();
 				
-				Cliente cliente = new Cliente(idCliente, nombreCliente, telefonoCliente);
-				clientes.put(idCliente, cliente);
+				Cliente cliente = new Cliente(ultimoIdCliente, nombreCliente, telefonoCliente);
+				clientes.put(ultimoIdCliente, cliente);
 				break;
 				
 			case 3: 
@@ -72,8 +88,9 @@ public class ConsolaBanco {
 				System.out.println("\n---------------------------------------------------------------");
 				System.out.println("Gestores");
 				System.out.println("---------------------------------------------------------------");
-				gestores.forEach((clave, valor)->{
-					valor.mostrarInfo();
+				gestores.forEach((clave, dato)->{
+					System.out.println(clave);
+					dato.mostrarInfo();
 					System.out.println("---------------------------------------------------------------");
 				});
 				break;
@@ -122,6 +139,113 @@ public class ConsolaBanco {
 					System.out.println("El Cliente solicitado no existe");
 				}
 				
+				break;
+				
+			case 7:
+				//Actualizar un gestor
+				System.out.print("Ingrese el id del gestor a actualizar: ");
+				int idGUpdate = keyboard.nextInt();
+				Gestor gestorUpdated = gestores.get(idGUpdate);
+				if(gestorUpdated != null) {
+					System.out.println("NOTA: Si no desea cambiar el dato ingrese 0");
+					System.out.print("Ingrese el nombre del gestor: ");
+					String nombreGUpdate = keyboard.next();
+					System.out.print("Ingrese el telefono del gestor: ");
+					String telefonoGUpdate = keyboard.next();
+					System.out.print("Ingrese el id de la oficina del gestor: ");
+					int oficinaGUpdate = keyboard.nextInt();
+
+					if(!nombreGUpdate.equals("0")) {
+						gestorUpdated.setNombre(nombreGUpdate);
+					}
+					
+					if(!telefonoGUpdate.equals("0"))
+					{
+						gestorUpdated.setTelefono(telefonoGUpdate);
+					}
+					
+					if (oficinaGUpdate != 0) {
+						gestorUpdated.setOficina(oficinaGUpdate);
+					}
+					
+					System.out.println("Se ha actualizado el gestor");
+				}else
+				{
+					System.out.println("El Gestor solicitado no existe");
+				}
+				break;
+				
+			case 8:
+				//Actualizar un cliente
+				System.out.print("Ingrese el id del gestor a actualizar: ");
+				int idCUpdate = keyboard.nextInt();
+				Cliente clienteUpdated = clientes.get(idCUpdate);
+				if(clienteUpdated != null) {
+					System.out.println("NOTA: Si no desea cambiar el dato ingrese 0");
+					System.out.print("Ingrese el nombre del cliente: ");
+					String nombreCUpdate = keyboard.next();
+					System.out.print("Ingrese el telefono del cliente: ");
+					String telefonoCUpdate = keyboard.next();
+
+					if(!nombreCUpdate.equals("0")) {
+						clienteUpdated.setNombre(nombreCUpdate);
+					}
+					
+					if(!telefonoCUpdate.equals("0"))
+					{
+						clienteUpdated.setTelefono(telefonoCUpdate);
+					}
+					
+					System.out.println("Se ha actualizado el gestor");
+				}else
+				{
+					System.out.println("El Gestor solicitado no existe");
+				}
+				break;
+				
+			case 9:
+				//Eliminar un gestor
+				System.out.print("Ingrese el id del gestor a eliminar: ");
+				int idGDelete = keyboard.nextInt();
+				Gestor gestorDeleted = gestores.get(idGDelete);
+				if(gestorDeleted != null) {
+					gestores.remove(idGDelete);
+					System.out.println("Se ha eliminado el gestor");
+				}else
+				{
+					System.out.println("El gestor solicitado no existe");
+				}
+				break;
+				
+			case 10:
+				//Eliminar un cliente
+				System.out.print("Ingrese el id del cliente a eliminar: ");
+				int idCDelete = keyboard.nextInt();
+				Cliente clienteDeleted = clientes.get(idCDelete);
+				if(clienteDeleted != null) {
+					clientes.remove(idCDelete);
+					System.out.println("Se ha eliminado el cliente");
+				}else
+				{
+					System.out.println("El cliente solicitado no existe");
+				}
+				break;
+				
+			case 11:
+				//Crear Gestor Aleatorios
+				System.out.print("Cuantos gestores desea crear: ");
+				
+				int cantGestores = keyboard.nextInt();
+				
+				for (int i = 0; i<cantGestores; i++) {
+					ultimoIdGestor++;
+					String nombreRandom = Utiles.generarNombreRandom();
+					int oficinaRandom = Utiles.generarOficinaRandom();
+					String telefonoRandom = Utiles.generarTelefonoRandom();
+					
+					Gestor gestorAleatorio = new Gestor(ultimoIdGestor, nombreRandom, telefonoRandom,oficinaRandom);
+					gestores.put(ultimoIdGestor, gestorAleatorio);
+				}
 				break;
 				
 			default: 
