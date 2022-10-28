@@ -38,26 +38,33 @@ public class ConsolaBanco {
 				break;
 			
 			case 1: 
-				System.out.println("Crear Gestor");
 				System.out.print("Ingrese el id del gestor: ");
 				int id = keyboard.nextInt();
 				System.out.print("Ingrese el nombre del gestor: ");
-				String name = keyboard.next();
+				String nombre = keyboard.next();
 				System.out.print("Ingrese el telefono del gestor: ");
 				String telefono = keyboard.next();
 				System.out.print("Ingrese el id de la oficina del gestor: ");
 				int oficina = keyboard.nextInt();
 				
-				Gestor gestor = new Gestor(id, name, telefono,oficina);
+				Gestor gestor = new Gestor(id, nombre, telefono,oficina);
 				gestores.put(id, gestor);
 				break;
 				
 			case 2:
-				System.out.println("Crear Cliente");
+				System.out.print("Ingrese el id del cliente: ");
+				int idCliente = keyboard.nextInt();
+				System.out.print("Ingrese el nombre del gestor: ");
+				String nombreCliente = keyboard.next();
+				System.out.print("Ingrese el telefono del gestor: ");
+				String telefonoCliente = keyboard.next();
+				
+				Cliente cliente = new Cliente(idCliente, nombreCliente, telefonoCliente);
+				clientes.put(idCliente, cliente);
 				break;
 				
 			case 3: 
-				System.out.println("---------------------------------------------------------------");
+				System.out.println("\n---------------------------------------------------------------");
 				System.out.println("Gestores");
 				System.out.println("---------------------------------------------------------------");
 				gestores.forEach((clave, valor)->{
@@ -67,7 +74,13 @@ public class ConsolaBanco {
 				break;
 				
 			case 4:
-				System.out.println("Mostrar Clientes");
+				System.out.println("\n---------------------------------------------------------------");
+				System.out.println("Clientes");
+				System.out.println("---------------------------------------------------------------");
+				clientes.forEach((clave, valor)->{
+					valor.mostrarInfo();
+					System.out.println("---------------------------------------------------------------");
+				});
 				break;
 				
 			default: System.out.println("La opcion seleccionada no es valida... Ingrese una nuevamente");
