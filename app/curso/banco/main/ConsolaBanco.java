@@ -28,6 +28,8 @@ public class ConsolaBanco {
 			System.out.println("2. Crear Cliente");
 			System.out.println("3. Mostrar Gestores");
 			System.out.println("4. Mostrar Clientes");
+			System.out.println("5. Mostrar Gestor Especifico");
+			System.out.println("6. Mostrar Cliente Especifico");
 			System.out.println("0. Salir");
 			System.out.print("Ingrese el numero de la opcion: ");
 			opcion = keyboard.nextInt();
@@ -38,6 +40,7 @@ public class ConsolaBanco {
 				break;
 			
 			case 1: 
+				//Crear un gestor
 				System.out.print("Ingrese el id del gestor: ");
 				int id = keyboard.nextInt();
 				System.out.print("Ingrese el nombre del gestor: ");
@@ -52,6 +55,7 @@ public class ConsolaBanco {
 				break;
 				
 			case 2:
+				//Crear un cliente
 				System.out.print("Ingrese el id del cliente: ");
 				int idCliente = keyboard.nextInt();
 				System.out.print("Ingrese el nombre del gestor: ");
@@ -64,6 +68,7 @@ public class ConsolaBanco {
 				break;
 				
 			case 3: 
+				//Mostrar todos los gestores
 				System.out.println("\n---------------------------------------------------------------");
 				System.out.println("Gestores");
 				System.out.println("---------------------------------------------------------------");
@@ -74,6 +79,7 @@ public class ConsolaBanco {
 				break;
 				
 			case 4:
+				//Mostrar todos los clientes
 				System.out.println("\n---------------------------------------------------------------");
 				System.out.println("Clientes");
 				System.out.println("---------------------------------------------------------------");
@@ -83,53 +89,48 @@ public class ConsolaBanco {
 				});
 				break;
 				
-			default: System.out.println("La opcion seleccionada no es valida... Ingrese una nuevamente");
+			case 5:
+				//Mostrar un gestor por id (si existe)
+				System.out.print("Ingrese el id del gestor solicitado: ");
+				int idGestor = keyboard.nextInt();
+				Gestor selectedGestor = gestores.get(idGestor);
+				if(selectedGestor != null)
+				{
+					System.out.println("\n---------------------------------------------------------------");
+					System.out.println("Gestor: " + selectedGestor.getId());
+					System.out.println("---------------------------------------------------------------");
+						selectedGestor.mostrarInfo();
+				}else
+				{
+					System.out.println("El Gestor solicitado no existe");
+				}
+				break;
+				
+			case 6:
+				//Mostrar un cliente por id (si existe)
+				System.out.print("Ingrese el id del cliente solicitado: ");
+				int idClient = keyboard.nextInt();
+				Cliente selectedCliente = clientes.get(idClient);
+				if(selectedCliente != null)
+				{
+					System.out.println("\n---------------------------------------------------------------");
+					System.out.println("Cliente: " + selectedCliente.getId());
+					System.out.println("---------------------------------------------------------------");
+						selectedCliente.mostrarInfo();
+				}else
+				{
+					System.out.println("El Cliente solicitado no existe");
+				}
+				
+				break;
+				
+			default: 
+				//Opcion por defecto
+				System.out.println("La opcion seleccionada no es valida... Ingrese una nuevamente");
 			}
 			
 		}while(opcion != 0);
 		keyboard.close();
-		
-			
-		
-		
-		
-		
-		
-//		
-//		Cliente cliente = new Cliente(1, "Paco", "111111111");
-//		Cliente cliente2 = new Cliente(2, "Ana", "222222222");
-//		
-//		Gestor gestor = new Gestor(1, "Pedro", "111111111",1);
-//		Gestor gestor2 = new Gestor(2, "Juan", "222222222",2);
-//		
-//		cliente.abrirCuenta("ES123", 10.0f);
-//		
-//		
-//		gestores.put(1, gestor);
-//		gestores.put(2, gestor2);
-//		
-//		clientes.put(1, cliente);
-//		clientes.put(2, cliente2);
-//		
-//		cliente2.abrirCuenta("ES456", 20.0f);
-//		
-//		System.out.println("---------------------------------------------------------------");
-//		System.out.println("Gestores");
-//		System.out.println("---------------------------------------------------------------");
-//		gestores.forEach((clave, valor)->{
-//			valor.mostrarInfo();
-//			System.out.println("---------------------------------------------------------------");
-//		});
-//		
-//		System.out.println("Clientes");
-//		System.out.println("---------------------------------------------------------------");
-//		clientes.forEach((clave, valor)->{
-//			valor.mostrarInfo();
-//			System.out.println("---------------------------------------------------------------");
-//		});
-//		
-		
-
 	}
 
 }
