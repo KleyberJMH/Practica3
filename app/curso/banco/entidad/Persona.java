@@ -5,6 +5,7 @@ public class Persona {
 	protected int id;
 	protected String nombre;
 	protected String telefono;
+	protected String password;
 	
 	//Constructores por defecto
 	public Persona(){
@@ -44,7 +45,15 @@ public class Persona {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public void mostrarInfo() {
 		System.out.println("Id: " + this.id);
 		System.out.println("Nombre: " + this.nombre);
