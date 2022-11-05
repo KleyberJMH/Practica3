@@ -10,5 +10,3 @@
 - Numero de telefono
 
 4. Si hay algun error porfavor dejar una issue
-
-5. Ejercicios realizados hasta el ejercicio 11
