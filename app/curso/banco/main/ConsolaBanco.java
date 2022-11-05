@@ -5,16 +5,6 @@ import java.util.Scanner;
 import app.curso.banco.entidad.*;
 import app.curso.banco.util.Utiles;
 
-//Realizado hasta el ejercicio 11
-//Falta aun
-//12. Obtención de un mensaje.
-//13. Obtención de todos los mensajes.
-//14. Envío de un mensaje.
-//15. Obtención de una transferencia.
-//16. Obtención de todas las trasferencias
-//17. Envío de una transferencia.
-//18. Login y registro.
-
 public class ConsolaBanco {
 
 	public static void main(String[] args) {
@@ -55,9 +45,9 @@ public class ConsolaBanco {
 			System.out.println("12. Enviar un mensaje");
 			System.out.println("13. Ver un mensaje por id");
 			System.out.println("14. Ver todos los mensajes");
-//			System.out.println("15. Hacer una transferencia");//Se comento, No funciona
-//			System.out.println("16. Ver una transferencia por id");//Se comento, No funciona
-//			System.out.println("17. Ver todas las transferencias");//Se comento, No funciona
+			System.out.println("15. Hacer una transferencia");//Crea la transferencia pero no edita el saldo de los clientes
+			System.out.println("16. Ver una transferencia por id");
+			System.out.println("17. Ver todas las transferencias");
 			System.out.println("18. Login");
 			System.out.println("19. Registro");
 			System.out.println("0. Salir");
@@ -340,15 +330,9 @@ public class ConsolaBanco {
 				//Realizar transferencia
 				System.out.print("Id del emisor: ");							
 				int idEmisorT = keyboard.nextInt();
-				
-				System.out.print("Numero cuenta Emisor: ");							
-				String idCuentaE = keyboard.next();
 
 				System.out.print("Id del receptor: ");							
 				int idReceptorT = keyboard.nextInt();
-				
-				System.out.print("Numero cuenta Receptor: ");							
-				String idCuentaR = keyboard.next();
 				
 				System.out.print("Monto a transferir: ");							
 				float monto = keyboard.nextFloat();
@@ -360,9 +344,6 @@ public class ConsolaBanco {
 				Cliente receptorT = clientes.get(idReceptorT);
 				if (emisorT != null && receptorT != null)
 				{
-					
-					emisorT.retirarDinero(idCuentaE, monto);
-					receptorT.ingresarDinero(idCuentaR, monto);
 					ultimoIdTransferencia++;
 					Transferencia transferencia = new Transferencia (ultimoIdTransferencia, Mensaje.TIPO_CLIENTE , idEmisorT, Mensaje.TIPO_CLIENTE, idReceptorT, concepto, monto);
 					transferencias.put(ultimoIdTransferencia, transferencia);
