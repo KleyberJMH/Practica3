@@ -55,9 +55,9 @@ public class ConsolaBanco {
 			System.out.println("12. Enviar un mensaje");
 			System.out.println("13. Ver un mensaje por id");
 			System.out.println("14. Ver todos los mensajes");
-//			System.out.println("15. Hacer una transferencia");//Se comento, No funciona
-//			System.out.println("16. Ver una transferencia por id");//Se comento, No funciona
-//			System.out.println("17. Ver todas las transferencias");//Se comento, No funciona
+			System.out.println("15. Hacer una transferencia");//No le suma nada a los clientes
+			System.out.println("16. Ver una transferencia por id");
+			System.out.println("17. Ver todas las transferencias");
 			System.out.println("18. Login");
 			System.out.println("19. Registro");
 			System.out.println("0. Salir");
@@ -189,7 +189,7 @@ public class ConsolaBanco {
 				
 			case 8:
 				//Actualizar un cliente
-				System.out.print("Ingrese el id del gestor a actualizar: ");
+				System.out.print("Ingrese el id del cliente a actualizar: ");
 				int idCUpdate = keyboard.nextInt();
 				Cliente clienteUpdated = clientes.get(idCUpdate);
 				if(clienteUpdated != null) {
@@ -208,10 +208,10 @@ public class ConsolaBanco {
 						clienteUpdated.setTelefono(telefonoCUpdate);
 					}
 					
-					System.out.println("Se ha actualizado el gestor");
+					System.out.println("Se ha actualizado el cliente");
 				}else
 				{
-					System.out.println("El Gestor solicitado no existe");
+					System.out.println("El Cliente solicitado no existe");
 				}
 				break;
 				
