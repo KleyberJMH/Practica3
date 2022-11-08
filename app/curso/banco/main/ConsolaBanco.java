@@ -62,14 +62,18 @@ public class ConsolaBanco {
 			case 1: 
 				//Crear un gestor
 				ultimoIdGestor++;
-				System.out.print("Ingrese el nombre del gestor: ");
+				System.out.print("Ingrese el nombre del gestor:");
 				String nombre = keyboard.next();
-				System.out.print("Ingrese el telefono del gestor: ");
+				System.out.print("Ingrese el apellido del gestor:");
+				String apellido = keyboard.next();
+				System.out.println("Ingrese el telefono del gestor: ");
 				String telefono = keyboard.next();
 				System.out.print("Ingrese el id de la oficina del gestor: ");
 				int oficina = keyboard.nextInt();
 				
-				Gestor gestor = new Gestor(ultimoIdGestor, nombre, telefono,oficina);
+				String nombreCompleto = nombre + " " + apellido;
+				
+				Gestor gestor = new Gestor(ultimoIdGestor, nombreCompleto, telefono,oficina);
 				gestores.put(ultimoIdGestor, gestor);
 				break;
 				
@@ -77,11 +81,15 @@ public class ConsolaBanco {
 				//Crear un cliente
 				ultimoIdCliente++;
 				System.out.print("Ingrese el nombre del cliente: ");
-				String nombreCliente = keyboard.next();
+				String nombreCliente = keyboard.nextLine();
+				System.out.print("Ingrese el apellido del cliente: ");
+				String apellidoCliente = keyboard.nextLine();
 				System.out.print("Ingrese el telefono del cliente: ");
 				String telefonoCliente = keyboard.next();
 				
-				Cliente cliente = new Cliente(ultimoIdCliente, nombreCliente, telefonoCliente);
+				String nombreCompletoCliente = nombreCliente + " " + apellidoCliente;
+				
+				Cliente cliente = new Cliente(ultimoIdCliente, nombreCompletoCliente, telefonoCliente);
 				clientes.put(ultimoIdCliente, cliente);
 				break;
 				
@@ -150,15 +158,20 @@ public class ConsolaBanco {
 				Gestor gestorUpdated = gestores.get(idGUpdate);
 				if(gestorUpdated != null) {
 					System.out.println("NOTA: Si no desea cambiar el dato ingrese 0");
+					System.out.println("NOTA: Si desea cambiar el nombre o el apellido debe colocar los dos datos");
 					System.out.print("Ingrese el nombre del gestor: ");
 					String nombreGUpdate = keyboard.next();
+					System.out.print("Ingrese el apellido del gestor: ");
+					String apellidoGUpdate = keyboard.next();
 					System.out.print("Ingrese el telefono del gestor: ");
 					String telefonoGUpdate = keyboard.next();
 					System.out.print("Ingrese el id de la oficina del gestor: ");
 					int oficinaGUpdate = keyboard.nextInt();
-
-					if(!nombreGUpdate.equals("0")) {
-						gestorUpdated.setNombre(nombreGUpdate);
+					
+					String nombreCompletoGUpdate = nombreGUpdate + " " + apellidoGUpdate;
+					
+					if(!nombreGUpdate.equals("0") && !apellidoGUpdate.equals("0")) {
+						gestorUpdated.setNombre(nombreCompletoGUpdate);
 					}
 					
 					if(!telefonoGUpdate.equals("0"))
@@ -186,11 +199,15 @@ public class ConsolaBanco {
 					System.out.println("NOTA: Si no desea cambiar el dato ingrese 0");
 					System.out.print("Ingrese el nombre del cliente: ");
 					String nombreCUpdate = keyboard.next();
+					System.out.print("Ingrese el apellido del cliente: ");
+					String apellidoCUpdate = keyboard.next();
 					System.out.print("Ingrese el telefono del cliente: ");
 					String telefonoCUpdate = keyboard.next();
+					
+					String nombreCompletoCUpdate = nombreCUpdate + " " + apellidoCUpdate;
 
-					if(!nombreCUpdate.equals("0")) {
-						clienteUpdated.setNombre(nombreCUpdate);
+					if(!nombreCUpdate.equals("0") && !apellidoCUpdate.equals("0")) {
+						clienteUpdated.setNombre(nombreCompletoCUpdate);
 					}
 					
 					if(!telefonoCUpdate.equals("0"))
